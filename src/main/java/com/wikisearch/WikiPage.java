@@ -12,7 +12,7 @@ public class WikiPage {
 
     Integer ns = 0;
     String title = "";
-    Long pageId = 0L;
+    Integer pageid = 0;
     Long size = 0L;
     Long wordcount = 0L;
     String snippet = "";

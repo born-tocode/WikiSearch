@@ -8,27 +8,34 @@ import com.wikisearch.WikiPage;
 
 import java.io.IOException;
 
-public class WikiPageDeserializer extends StdDeserializer<WikiPage> {
+public class JsonCustomDeserializer extends StdDeserializer<WikiPage> {
 
-    public WikiPageDeserializer(Class<?> vc) {
+    public JsonCustomDeserializer(Class<?> vc) {
         super(vc);
     }
 
     @Override
     public WikiPage deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
+
         WikiPage wikiPage = new WikiPage();
+
         while (!parser.isClosed()) {
             JsonToken jsonToken = parser.nextToken();
 
             if (JsonToken.FIELD_NAME.equals(jsonToken)) {
                 String fieldName = parser.getCurrentName();
+
                 System.out.println(fieldName);
 
                 jsonToken = parser.nextToken();
 
                 if ("title".equals(fieldName)) {
                     wikiPage.setTitle(parser.getValueAsString());
-                } else if ("snippet".equals(fieldName)) {
+                }
+                if ("pageid".equals(fieldName)) {
+                    wikiPage.setPageid(parser.getValueAsInt());
+                }
+                if ("snippet".equals(fieldName)) {
                     wikiPage.setSnippet(parser.getValueAsString());
                 }
             }
