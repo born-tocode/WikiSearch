@@ -1,6 +1,6 @@
 package com.wikisearch.web;
 
-import com.wikisearch.service.UriService;
+import com.wikisearch.service.UrlService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,18 @@ import java.io.IOException;
 @RequestMapping("/")
 public class HomeController {
 
+
+    private final UrlService urlService;
+
+    public HomeController(UrlService urlService) {
+    this.urlService = urlService;
+    }
+
     @ResponseBody
     @GetMapping("/query/club")
-    public String getClubNameFromUser(@RequestParam("name") String name) throws IOException {
-        new UriService().run(name);
-        return name;
+    public String getClubNameFromUser(@RequestParam("name") String clubName) throws IOException {
+        var clubUrl = urlService.run(clubName);
+        return "Your query: " + clubName
+                + "\nRequested URL: " + clubUrl;
     }
 }
