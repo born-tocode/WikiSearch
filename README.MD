@@ -5,4 +5,5 @@
 
 JAR Build with libs:
 JDK 11
-"_JDK LOCATION_\bin\java.exe" -Dfile.encoding=windows-1250 -jar "_PATH JAR_\build\libs\WikiSearch-0.0.2-SNAPSHOT.jar"
+
+`"_JDK_LOCATION_\bin\java.exe" -Dfile.encoding=windows-1250 -jar "_PATH_JAR_\build\libs\WikiSearch-0.0.2-SNAPSHOT.jar"`
