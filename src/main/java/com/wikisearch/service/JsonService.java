@@ -11,15 +11,17 @@ import java.util.List;
 @Service
 public class JsonService {
 
+    private final UrlService urlService;
     private ObjectMapper objectMapper;
 
     public JsonService() {
         this.objectMapper = new ObjectMapper();
+        urlService = new UrlService();
     }
 
     public URL run(URL url) throws IOException {
         var jNodeUrl = parseJson(url);
-        return new UrlService().selectUrlByCriteria(jNodeUrl);
+        return urlService.selectUrlByCriteria(jNodeUrl);
     }
 
     public List<JsonNode> parseJson(URL url) throws IOException {
@@ -28,7 +30,6 @@ public class JsonService {
 
         return jNodeUrl;
     }
-
 }
 
 
